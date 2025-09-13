@@ -1,0 +1,1 @@
+web: java -jar target/png-steganography-1.0.0.jar

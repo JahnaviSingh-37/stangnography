@@ -1,0 +1,32 @@
+# PNG Steganography Services
+services:
+  # Backend Spring Boot Service
+  - type: web
+    name: png-steganography-backend
+    runtime: java
+    plan: free
+    buildCommand: cd backend && chmod +x mvnw && ./mvnw clean package -DskipTests
+    startCommand: cd backend && java -Dserver.port=$PORT -Dspring.profiles.active=production -jar target/png-steganography-1.0.0.jar
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: production
+      - key: MONGODB_URI
+        value: mongodb://localhost:27017/steganography
+      - key: BLOCKCHAIN_PRIVATE_KEY
+        value: dummy_key
+      - key: BLOCKCHAIN_RPC_URL
+        value: https://rpc-amoy.polygon.technology/
+    healthCheckPath: /api/steganography/records
+
+  # Frontend React Service  
+  - type: web
+    name: png-steganography-frontend
+    runtime: node
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    startCommand: cd frontend && npx serve -s build -l $PORT
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://png-steganography-backend.onrender.com
+      - key: NODE_ENV
+        value: production
