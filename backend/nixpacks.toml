@@ -1,0 +1,7 @@
+providers = ["java"]
+
+[phases.build]
+cmds = ["chmod +x mvnw", "./mvnw clean package -DskipTests"]
+
+[phases.deploy]
+cmd = "java -Dserver.port=$PORT -Dspring.profiles.active=production -jar target/png-steganography-1.0.0.jar"
