@@ -6,6 +6,7 @@
     "build": "cd backend && mvn clean package -DskipTests"
   },
   "engines": {
-    "node": "18.x"
-  }
+    "java": "17.x"
+  },
+  "main": "backend/src/main/java/com/steganography/PngSteganographyApplication.java"
 }
