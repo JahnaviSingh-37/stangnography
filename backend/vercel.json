@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "name": "steganography-backend",
+  "builds": [
+    {
+      "src": "pom.xml",
+      "use": "@vercel/java"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/.*",
+      "dest": "/"
+    }
+  ],
+  "env": {
+    "MONGODB_URI": "@mongodb_uri",
+    "PRIVATE_KEY": "@private_key", 
+    "RPC_URL": "@rpc_url"
+  }
+}
