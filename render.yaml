@@ -1,24 +1,21 @@
-# PNG Steganography Blueprint
+# PNG Steganography Services
 services:
   # Backend Spring Boot Service
   - type: web
     name: png-steganography-backend
-    runtime: docker
+    runtime: java
     plan: free
-    dockerfilePath: ./backend/Dockerfile
+    buildCommand: cd backend && chmod +x mvnw && ./mvnw clean package -DskipTests
+    startCommand: cd backend && java -Dserver.port=$PORT -Dspring.profiles.active=production -jar target/png-steganography-1.0.0.jar
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: production
-      - key: SERVER_PORT
-        value: $PORT
       - key: MONGODB_URI
-        value: mongodb+srv://your-username:your-password@cluster.mongodb.net/steganography
+        value: mongodb://localhost:27017/steganography
       - key: BLOCKCHAIN_PRIVATE_KEY
-        value: your_polygon_private_key_here
+        value: dummy_key
       - key: BLOCKCHAIN_RPC_URL
         value: https://rpc-amoy.polygon.technology/
-      - key: FRONTEND_URL
-        value: https://png-steganography-frontend.onrender.com
     healthCheckPath: /api/steganography/records
 
   # Frontend React Service  
