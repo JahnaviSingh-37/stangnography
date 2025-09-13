@@ -1,9 +1,0 @@
-{
-  "scripts": {
-    "build": "cd backend && mvn clean package -DskipTests",
-    "start": "cd backend && java -jar target/png-steganography-1.0.0.jar"
-  },
-  "engines": {
-    "node": "18.x"
-  }
-}
