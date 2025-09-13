@@ -1,0 +1,11 @@
+{
+  "name": "steganography-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "cd backend && java -jar target/png-steganography-1.0.0.jar",
+    "build": "cd backend && mvn clean package -DskipTests"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
