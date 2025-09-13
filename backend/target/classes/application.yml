@@ -1,0 +1,43 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: png-steganography
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/steganography}
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+# Blockchain Configuration
+blockchain:
+  rpc:
+    url: ${BLOCKCHAIN_RPC_URL:https://rpc-amoy.polygon.technology/}
+  contract:
+    address: "0x0000000000000000000000000000000000000000"
+  private:
+    key: ${BLOCKCHAIN_PRIVATE_KEY:0x0000000000000000000000000000000000000000000000000000000000000000}
+
+# Logging Configuration  
+logging:
+  level:
+    com.steganography: DEBUG
+    org.web3j: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/steganography.log
+
+# Management endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always

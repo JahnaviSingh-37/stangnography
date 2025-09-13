@@ -1,0 +1,174 @@
+{
+  "info": {
+    "name": "PNG Steganography API",
+    "description": "Complete API collection for PNG Steganography with Blockchain Verification",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/steganography/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "steganography", "health"]
+        }
+      }
+    },
+    {
+      "name": "Hide Text in Image",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "image",
+              "type": "file",
+              "src": "/path/to/your/image.png"
+            },
+            {
+              "key": "text",
+              "value": "This is a secret message!",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/steganography/hide",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "steganography", "hide"]
+        }
+      }
+    },
+    {
+      "name": "Extract Text from Image",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "image",
+              "type": "file",
+              "src": "/path/to/steganographic/image.png"
+            },
+            {
+              "key": "transactionHash",
+              "value": "0x1234567890abcdef...",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/steganography/extract",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "steganography", "extract"]
+        }
+      }
+    },
+    {
+      "name": "Verify Text Integrity",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "text",
+              "value": "This is a secret message!",
+              "type": "text"
+            },
+            {
+              "key": "transactionHash",
+              "value": "0x1234567890abcdef...",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/steganography/verify",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "steganography", "verify"]
+        }
+      }
+    },
+    {
+      "name": "Get All Records",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/steganography/records",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "steganography", "records"]
+        }
+      }
+    },
+    {
+      "name": "Get Record by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/steganography/records/{{recordId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "steganography", "records", "{{recordId}}"]
+        }
+      }
+    },
+    {
+      "name": "Get Record by Transaction Hash",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/steganography/records/transaction/{{transactionHash}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "steganography", "records", "transaction", "{{transactionHash}}"]
+        }
+      }
+    },
+    {
+      "name": "Generate SHA-256 Hash",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "text",
+              "value": "This is a secret message!",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/steganography/hash",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "steganography", "hash"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "recordId",
+      "value": "your-record-id-here"
+    },
+    {
+      "key": "transactionHash",
+      "value": "0x1234567890abcdef..."
+    }
+  ]
+}
