@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: steganography-backend
+    env: java
+    plan: free
+    buildCommand: mvn clean install -DskipTests
+    startCommand: java -jar target/steganography-0.0.1-SNAPSHOT.jar --server.port=$PORT
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: MONGODB_URI
+        value: mongodb://localhost:27017/steganography
+      - key: POLYGON_PRIVATE_KEY
+        value: 0x0000000000000000000000000000000000000000000000000000000000000001
+      - key: POLYGON_RPC_URL
+        value: https://polygon-amoy.g.alchemy.com/v2/demo
